@@ -96,7 +96,7 @@
       </Button>
       <TextArea fx:id="messageTextField" layoutX="32.0" layoutY="568.0" prefHeight="55.0" prefWidth="542.0" />
       <Label layoutX="32.0" layoutY="550.0" text="message" />
-      <CheckBox layoutX="32.0" layoutY="631.0" mnemonicParsing="false" text="Please accept terms and conditions" />
+      <CheckBox  fx:id="termsCheckBox"  layoutX="32.0" layoutY="631.0" mnemonicParsing="false" text="Please accept terms and conditions" />
       <ImageView fitHeight="8.0" fitWidth="100.0" layoutX="128.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../imagesJava/header_divider.png" />
@@ -197,11 +197,7 @@
             <Font name="Arial Black" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="SuccessregisterMessageLabel" alignment="CENTER" layoutX="244.0" layoutY="95.0" textFill="#0f8a2c">
-         <font>
-            <Font name="Arial Black" size="14.0" />
-         </font>
-      </Label>
+
       <DatePicker fx:id="dateofbirthDatePicker" layoutX="400.0" layoutY="169.0" prefHeight="26.0" prefWidth="161.0" promptText="dateofbirth" />
       <PasswordField fx:id="setPasswordField" layoutX="32.0" layoutY="460.0" prefHeight="26.0" prefWidth="238.0" promptText="password" />
       <PasswordField fx:id="confirmPasswordField" layoutX="333.0" layoutY="460.0" prefHeight="26.0" prefWidth="238.0" promptText="confirm password" />

@@ -6,8 +6,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
@@ -15,6 +17,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RegisterController {
     @FXML
@@ -66,7 +70,8 @@ public class RegisterController {
     private CheckBox Act5;
     @FXML
     private CheckBox Act6;
-
+    @FXML
+    private CheckBox termsCheckBox;
 
     public void RegisterButtonOnAction(ActionEvent event) {
         if (firstnameTextField.getText().isBlank() || lastnameTextField.getText().isBlank() ||
@@ -105,11 +110,27 @@ public class RegisterController {
             registerMessageLabel.setText("Phone number must be numeric and have 8 digits");
             return;
         }
+        String email = emailTextField.getText();
+        if (!isValidEmail(email)) {
+            registerMessageLabel.setText("Please enter a valid email address");
+            return;
+        }
+        if (!termsCheckBox.isSelected()) {
+            registerMessageLabel.setText("Please accept terms and conditions");
+            return; // Exit the method if checkbox is not selected
+        }
         String hashedPassword = hashPassword(password);
 
         validateRegistration(hashedPassword, dateOfBirth);
         //registerMessgeLabel.setText("Welcome to Login Page! You try to Login");
         //validateLogin();
+    }
+    private boolean isValidEmail(String email) {
+        // Regular expression for email validation
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        Pattern pattern = Pattern.compile(emailRegex);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
     }
     private boolean isNumeric(String str) {
         return str.matches("\\d+");
@@ -178,7 +199,9 @@ public class RegisterController {
 
             int rowsAffected = preparedStatement.executeUpdate();
             if (rowsAffected > 0) {
-                SuccessregisterMessageLabel.setText("Registration successful. Welcome!");
+                registerMessageLabel.setTextFill(Color.web("#0f8a2c"));
+
+                registerMessageLabel.setText("Registration successful. Welcome!");
             } else {
                 registerMessageLabel.setText("Registration failed. Please try again.");
             }
