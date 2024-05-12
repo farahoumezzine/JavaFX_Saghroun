@@ -47,8 +47,8 @@
                </font>
             </Label>
             <PasswordField fx:id="passwordTextField" layoutX="169.0" layoutY="232.0" promptText="password" />
-            <Button fx:id="loginButton" layoutX="88.0" layoutY="312.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="26.0" prefWidth="233.0" text="Login" />
-            <Button fx:id="cancelButton" layoutX="88.0" layoutY="356.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="26.0" prefWidth="233.0" text="Cancel" />
+            <Button fx:id="loginButton" layoutX="88.0" layoutY="298.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="26.0" prefWidth="233.0" text="Login" />
+            <Button fx:id="cancelButton" layoutX="88.0" layoutY="335.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="26.0" prefWidth="233.0" text="Cancel" />
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="5.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="file:///C:/Users/DELL/IdeaProjects/demo/imagesJava/header_divider.png" />
@@ -95,6 +95,7 @@
                   <Font name="Bell MT Bold" size="14.0" />
                </font>
             </Label>
+            <Button fx:id="gotoRegisterButton" layoutX="87.0" layoutY="371.0" mnemonicParsing="false" onAction="#view2" prefHeight="26.0" prefWidth="233.0" text="GoBack" />
 
          </children>
       </AnchorPane>

@@ -6,7 +6,7 @@ public class DatabaseConnection {
     public Connection databaseLink;
 
     public Connection getConnection() {
-        String databaseName="useraccounts";
+        String databaseName="pfa";
         String databaseUser="root";
         String databasePassword="";
         String databaseUrl="jdbc:mysql://localhost/"+ databaseName;
