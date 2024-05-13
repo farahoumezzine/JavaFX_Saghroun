@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="733.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.termsandconditionsController">
+   <children>
+      <AnchorPane prefHeight="82.0" prefWidth="600.0" style="-fx-background-color: #10439F;">
+         <children>
+            <ImageView fitHeight="64.0" fitWidth="108.0" layoutX="470.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../imagesJava/LOGO.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="44.0" fitWidth="76.0" layoutX="35.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../imagesJava/conditions-dutilisation.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="91.0" layoutY="27.0" text="Terms and conditions" textFill="WHITE">
+               <font>
+                  <Font name="Arial Unicode MS" size="19.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <TextArea editable="false" layoutX="8.0" layoutY="92.0" prefHeight="601.0" prefWidth="576.0" text="1-Enrollment Process:&#10;     Parents/guardians must complete and submit the enrollment forms provided by the kindergarten.&#10;     Enrollment is subject to availability and is confirmed upon receipt of the completed &#10;forms and applicable fees.&#10; 2-Fees and Payments:&#10;     Parents/guardians are responsible for paying tuition fees as outlined in the fee schedule provided&#10; by the kindergarten.&#10;     Fees are payable in advance and are non-refundable unless otherwise specified in writing&#10; by the kindergarten administration.&#10;3-Attendance and Punctuality:&#10;    Children are expected to attend kindergarten regularly and punctually.&#10;     Parents/guardians must notify the kindergarten of any absences or late arrivals.&#10;4-Health and Safety:&#10;    Parents/guardians must provide up-to-date medical records and emergency contact information&#10; for their child.&#10;   Children must be kept home if they are unwell or contagious to prevent the spread of illness to other&#10; children and staff.&#10; 5-Behavior and Discipline:&#10;    Children are expected to respect others, follow instructions, and behave appropriately while in &#10;the kindergarten.&#10;    The kindergarten employs positive reinforcement and age-appropriate discipline techniques to &#10;promote positive behavior.&#10;6-Communication:&#10;    The kindergarten will communicate important information, updates, and events to parents/guardians&#10; via email, newsletters, or other means of communication.&#10;    Parents/guardians are encouraged to communicate any concerns or feedback with the kindergarten &#10;administration in a timely manner.&#10;7-Privacy and Confidentiality:&#10;     The kindergarten respects the privacy and confidentiality of children and their families and will not&#10; disclose personal information without consent, except as required by law.&#10;8-Attendance and Punctuality:&#10;     Children are expected to attend kindergarten regularly and punctually.&#10;     Parents/guardians must notify the kindergarten of any absences or late arrivals.&#10;9-Termination of Enrollment:&#10;   The kindergarten reserves the right to terminate a child's enrollment due to non-payment of fees, &#10;behavior issues, or other reasons deemed necessary by the administration.&#10;  Parents/guardians may also choose to withdraw their child from the kindergarten with written notice&#10; provided to the administration.&#10;10-Changes to Terms and Conditions:&#10;   The kindergarten reserves the right to update or modify these terms and conditions at any time. &#10;Parents/guardians will be notified of any changes in writing." />
+      <Button fx:id="gotoRegisterButton" layoutX="10.0" layoutY="699.0" mnemonicParsing="false" onAction="#viewTerms" prefHeight="26.0" prefWidth="570.0" text="GoBack" />
+   </children>
+</AnchorPane>

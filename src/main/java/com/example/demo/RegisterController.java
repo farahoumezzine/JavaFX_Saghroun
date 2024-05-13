@@ -73,6 +73,20 @@ public class RegisterController {
     @FXML
     private CheckBox termsCheckBox;
 
+    public void gotoTerms() {
+
+        try {
+            Stage stage = (Stage) termsCheckBox.getScene().getWindow();
+            stage.close();
+
+            Parent root = FXMLLoader.load(getClass().getResource("termsandconditions.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public void RegisterButtonOnAction(ActionEvent event) {
         if (firstnameTextField.getText().isBlank() || lastnameTextField.getText().isBlank() ||
                  phoneTextField.getText().isBlank() ||

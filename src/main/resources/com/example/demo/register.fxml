@@ -96,7 +96,7 @@
       </Button>
       <TextArea fx:id="messageTextField" layoutX="32.0" layoutY="568.0" prefHeight="55.0" prefWidth="542.0" />
       <Label layoutX="32.0" layoutY="550.0" text="message" />
-      <CheckBox  fx:id="termsCheckBox"  layoutX="32.0" layoutY="631.0" mnemonicParsing="false" text="Please accept terms and conditions" />
+      <CheckBox  fx:id="termsCheckBox"  layoutX="32.0" layoutY="631.0" mnemonicParsing="false" text="Please accept terms and conditions" onAction="#gotoTerms" />
       <ImageView fitHeight="8.0" fitWidth="100.0" layoutX="128.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../imagesJava/header_divider.png" />
