@@ -13,7 +13,10 @@ import javafx.scene.control.PasswordField;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -44,26 +47,46 @@ public class LoginController {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
     }
-    public void validateLogin(){
-        DatabaseConnection connectNow= new DatabaseConnection();
-        Connection connectDB = connectNow.getConnection();
-        //SELECT COUNT(1) FROM `useraccount` WHERE Username='master' And Password='jedi';
 
-        String verifyLogin="SELECT count(1) FROM children WHERE username= '"+usernameTextField.getText()+ "' AND password='"+passwordTextField.getText()+"'";
-    try{
-    Statement statement = connectDB.createStatement();
-    ResultSet queryResult = statement.executeQuery(verifyLogin);
-    while(queryResult.next()){
-        if(queryResult.getInt(1)==1){
-            loginMessageLabel.setText("Welcome");
-        }else{
-            loginMessageLabel.setText("Login Failed! Please try again");
+    private String hashPassword(String password) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] hashedPassword = md.digest(password.getBytes());
+            StringBuilder sb = new StringBuilder();
+            for (byte b : hashedPassword) {
+                sb.append(String.format("%02x", b));
+            }
+            return sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return null;
         }
     }
-    }catch(Exception e){
-    e.printStackTrace();
+    public void validateLogin() {
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+
+        String hashedPassword = hashPassword(passwordTextField.getText());
+
+        String verifyLogin = "SELECT count(1) FROM children WHERE (username = ? OR email = ?) AND password = ?";
+
+        try {
+            PreparedStatement preparedStatement = connectDB.prepareStatement(verifyLogin);
+            preparedStatement.setString(1, usernameTextField.getText());
+            preparedStatement.setString(2, usernameTextField.getText());
+            preparedStatement.setString(3, hashedPassword);
+
+            ResultSet queryResult = preparedStatement.executeQuery();
+            if (queryResult.next() && queryResult.getInt(1) == 1) {
+                loginMessageLabel.setText("Welcome");
+            } else {
+                loginMessageLabel.setText("Login Failed! Please try again");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-    }
+
 
     public void createAccountForm(){
         try{

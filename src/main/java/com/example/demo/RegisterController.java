@@ -11,6 +11,8 @@ import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -77,7 +79,6 @@ public class RegisterController {
 
         try {
             Stage stage = (Stage) termsCheckBox.getScene().getWindow();
-            stage.close();
 
             Parent root = FXMLLoader.load(getClass().getResource("termsandconditions.fxml"));
             Scene scene = new Scene(root);
@@ -134,8 +135,10 @@ public class RegisterController {
             return; // Exit the method if checkbox is not selected
         }
         String hashedPassword = hashPassword(password);
+        String hashedConfirmPassword = hashPassword(confirmPassword);
 
-        validateRegistration(hashedPassword, dateOfBirth);
+        // Pass the hashed password to validateRegistration
+        validateRegistration(hashedPassword, hashedConfirmPassword, dateOfBirth);
         //registerMessgeLabel.setText("Welcome to Login Page! You try to Login");
         //validateLogin();
     }
@@ -151,8 +154,17 @@ public class RegisterController {
     }
 
     private String hashPassword(String password) {
-
-        return password;
+        try {
+            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+            byte[] hashedBytes = messageDigest.digest(password.getBytes());
+            StringBuilder sb = new StringBuilder();
+            for (byte b : hashedBytes) {
+                sb.append(String.format("%02x", b));
+            }
+            return sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException("Error hashing password", e);
+        }
     }
     public void cancelButtonOnAction (ActionEvent event) {
         Stage stage = (Stage) CancelButtonRegister.getScene().getWindow();
@@ -173,7 +185,7 @@ public class RegisterController {
         }
     }
 
-    public void validateRegistration(String hashedPassword , LocalDate dateOfBirth) {
+    public void validateRegistration(String hashedPassword, String hashedConfirmPassword, LocalDate dateOfBirth) {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
@@ -209,7 +221,7 @@ public class RegisterController {
             preparedStatement.setString(10, allergiesTextField.getText());
             preparedStatement.setString(11, getSelectedActivities());
             preparedStatement.setString(12, getSelectedGender());
-            preparedStatement.setString(13, confirmPasswordField.getText());
+            preparedStatement.setString(13, hashedConfirmPassword);
 
             int rowsAffected = preparedStatement.executeUpdate();
             if (rowsAffected > 0) {
