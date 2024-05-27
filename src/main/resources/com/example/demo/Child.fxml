@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="710.0" prefWidth="946.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.ChildController">
+   <children>
+      <VBox layoutX="18.0" layoutY="73.0" prefHeight="663.0" prefWidth="246.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" wrappingWidth="79.7828369140625" />
+            <TextField fx:id="firstnameTextField" promptText="first name" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name" />
+            <TextField fx:id="lastnameTextField" promptText="last name" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date of birth" wrappingWidth="89.6910400390625" />
+            <DatePicker fx:id="dateofbirthDatePicker" prefHeight="26.0" prefWidth="251.0" promptText="dateofbirth" />
+            <Label text="Choose Activities:" />
+            <CheckBox fx:id="Act2" mnemonicParsing="false" text="Arts and Crafts" />
+            <CheckBox fx:id="Act3" mnemonicParsing="false" text="Music and Movement" />
+            <CheckBox fx:id="Act4" mnemonicParsing="false" text="swimming pool" />
+            <CheckBox fx:id="Act5" mnemonicParsing="false" text="Sensory Play" />
+            <CheckBox fx:id="Act6" mnemonicParsing="false" text="Yoga" />
+            <CheckBox fx:id="Act1" mnemonicParsing="false" text="Outdoor Exploration" />
+            <Label text="Choose Gender:" />
+            <RadioButton fx:id="malegender" mnemonicParsing="false" text="Male" />
+            <RadioButton fx:id="femalegender" mnemonicParsing="false" text="Female" />
+            <Label text="username" />
+            <TextField fx:id="usernameTextField" prefHeight="26.0" prefWidth="246.0" promptText="username" />
+            <Label text="phone" />
+            <TextField fx:id="phoneTextField" prefHeight="26.0" prefWidth="169.0" promptText="phone" />
+            <Label text="email" />
+            <TextField fx:id="emailTextField" prefHeight="26.0" prefWidth="238.0" promptText="email" />
+            <Label text="password" />
+            <PasswordField fx:id="setPasswordField" prefHeight="26.0" prefWidth="238.0" promptText="password" />
+            <Label text="password confirmation" />
+            <PasswordField fx:id="confirmPasswordField" prefHeight="26.0" prefWidth="238.0" promptText="confirm password" />
+            <Label text=" Does your child have any food or medical allergies?">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+            <TextField fx:id="allergiesTextField" prefHeight="26.0" prefWidth="238.0" />
+            <Label text="Does your child have any Medical Conditions (Asthma...) ?">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+            <TextField fx:id="medicalTextField" prefHeight="26.0" prefWidth="238.0" />
+            <Label text="message" />
+            <TextArea fx:id="messageTextField" prefHeight="55.0" prefWidth="542.0" />
+         </children>
+      </VBox>
+      <AnchorPane layoutY="-4.0" prefHeight="66.0" prefWidth="945.0" style="-fx-background-color: #10439F;">
+         <children>
+            <ImageView fitHeight="58.0" fitWidth="201.0" layoutX="789.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="file:///C:/Users/DELL/IdeaProjects/demo/imagesJava/LOGO.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="269.0" layoutY="19.0" text="CRUD Child" textFill="#efefef">
+               <font>
+                  <Font name="Arial Unicode MS" size="19.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <TableView fx:id="table" layoutX="272.0" layoutY="87.0" prefHeight="512.0" prefWidth="670.0">
+        <columns>
+          <TableColumn fx:id="colid" prefWidth="36.0" text="ID" />
+          <TableColumn fx:id="colfirstname" prefWidth="73.60003662109375" text="First Name" />
+            <TableColumn fx:id="collastname" prefWidth="81.60003662109375" text="Last Name" />
+            <TableColumn fx:id="colbirthday" prefWidth="75.99996948242188" text="Date of birth" />
+            <TableColumn fx:id="colactivities" prefWidth="71.199951171875" text="Activities" />
+            <TableColumn fx:id="colgender" prefWidth="66.39996337890625" text="Gender" />
+            <TableColumn fx:id="colusername" prefWidth="76.0" text="username" />
+            <TableColumn fx:id="colphone" prefWidth="82.4000244140625" text="phone" />
+            <TableColumn fx:id="colemail" prefWidth="104.00003662109373" text="email" />
+        </columns>
+      </TableView>
+      <ButtonBar layoutX="320.0" layoutY="616.0" prefHeight="50.0" prefWidth="452.0">
+        <buttons>
+          <Button fx:id="btnSave" mnemonicParsing="false" onAction="#addChildren" style="-fx-background-color: #10439F;" text="Save" textFill="WHITE" />
+            <Button fx:id="btnUpdate" layoutX="135.0" layoutY="17.0" mnemonicParsing="false" style="-fx-background-color: #10439F;" text="Update " textFill="WHITE" />
+            <Button fx:id="btnDelete" layoutX="48.0" layoutY="17.0" mnemonicParsing="false" style="-fx-background-color: #10439F;" text="Delete" textFill="WHITE" />
+            <Button fx:id="btnClear" layoutX="116.0" layoutY="17.0" mnemonicParsing="false" style="-fx-background-color: #10439F;" text="Clear" textFill="WHITE" />
+        </buttons>
+      </ButtonBar>
+   </children>
+</AnchorPane>
