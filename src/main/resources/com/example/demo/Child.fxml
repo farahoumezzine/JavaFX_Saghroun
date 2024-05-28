@@ -19,7 +19,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane prefHeight="710.0" prefWidth="946.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.ChildController">
+<AnchorPane prefHeight="747.0" prefWidth="946.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.ChildController">
    <children>
       <VBox layoutX="18.0" layoutY="73.0" prefHeight="663.0" prefWidth="246.0">
          <children>
@@ -79,7 +79,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <TableView fx:id="table" layoutX="272.0" layoutY="87.0" prefHeight="512.0" prefWidth="670.0">
+      <TableView fx:id="table" layoutX="275.0" layoutY="126.0" prefHeight="582.0" prefWidth="670.0">
         <columns>
           <TableColumn fx:id="colid" prefWidth="36.0" text="ID" />
           <TableColumn fx:id="colfirstname" prefWidth="73.60003662109375" text="First Name" />
@@ -92,7 +92,7 @@
             <TableColumn fx:id="colemail" prefWidth="104.00003662109373" text="email" />
         </columns>
       </TableView>
-      <ButtonBar layoutX="320.0" layoutY="616.0" prefHeight="50.0" prefWidth="452.0">
+      <ButtonBar layoutX="320.0" layoutY="712.0" prefHeight="28.0" prefWidth="452.0">
         <buttons>
           <Button fx:id="btnSave" mnemonicParsing="false" onAction="#addChildren" style="-fx-background-color: #10439F;" text="Save" textFill="WHITE" />
             <Button fx:id="btnUpdate" layoutX="135.0" layoutY="17.0" mnemonicParsing="false" style="-fx-background-color: #10439F;" text="Update " textFill="WHITE" />
@@ -100,5 +100,10 @@
             <Button fx:id="btnClear" layoutX="116.0" layoutY="17.0" mnemonicParsing="false" style="-fx-background-color: #10439F;" text="Clear" textFill="WHITE" />
         </buttons>
       </ButtonBar>
+      <Label fx:id="registerMessageLabel" alignment="CENTER" layoutX="277.0" layoutY="73.0" prefHeight="42.0" prefWidth="624.0" textFill="#d80032">
+         <font>
+            <Font name="Arial Black" size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

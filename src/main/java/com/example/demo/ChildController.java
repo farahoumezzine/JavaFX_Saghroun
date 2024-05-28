@@ -7,6 +7,8 @@ import javafx.scene.control.*;
 
 import javafx.event.ActionEvent;
 import java.net.URL;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,9 +19,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ChildController implements Initializable{
 
@@ -105,9 +110,61 @@ public class ChildController implements Initializable{
 
     }
 
-
     @FXML
     private void addChildren() {
+        if (firstnameTextField.getText().isBlank() || lastnameTextField.getText().isBlank() ||
+                phoneTextField.getText().isBlank() || usernameTextField.getText().isBlank() ||
+                emailTextField.getText().isBlank() || setPasswordField.getText().isBlank() ||
+                confirmPasswordField.getText().isBlank() ) {
+            registerMessageLabel.setTextFill(Color.web("#ff0000"));
+            registerMessageLabel.setText("Please fill in all fields");
+            return;
+        }
+
+        LocalDate dateOfBirth = dateofbirthDatePicker.getValue();
+        if (dateOfBirth == null) {
+            registerMessageLabel.setTextFill(Color.web("#ff0000"));
+            registerMessageLabel.setText("Please select a date of birth");
+            return;
+        }
+
+        if (!malegender.isSelected() && !femalegender.isSelected()) {
+            registerMessageLabel.setTextFill(Color.web("#ff0000"));
+            registerMessageLabel.setText("Please select gender");
+            return;
+        }
+
+        if (!Act1.isSelected() && !Act2.isSelected() && !Act3.isSelected() &&
+                !Act4.isSelected() && !Act5.isSelected() && !Act6.isSelected()) {
+            registerMessageLabel.setTextFill(Color.web("#ff0000"));
+            registerMessageLabel.setText("Please select at least one activity");
+            return;
+        }
+
+        String password = setPasswordField.getText();
+        String confirmPassword = confirmPasswordField.getText();
+        if (!password.equals(confirmPassword)) {
+            registerMessageLabel.setTextFill(Color.web("#ff0000"));
+            registerMessageLabel.setText("Password and Confirm Password do not match");
+            return;
+        }
+
+        String phoneNumber = phoneTextField.getText();
+        if (!isNumeric(phoneNumber) || phoneNumber.length() != 8) {
+            registerMessageLabel.setTextFill(Color.web("#ff0000"));
+            registerMessageLabel.setText("Phone number must be numeric and have 8 digits");
+            return;
+        }
+
+        String email = emailTextField.getText();
+        if (!isValidEmail(email)) {
+            registerMessageLabel.setTextFill(Color.web("#ff0000"));
+            registerMessageLabel.setText("Please enter a valid email address");
+            return;
+        }
+
+        String hashedPassword = hashPassword(password);
+
         String activities = getSelectedActivities();
         String gender = malegender.isSelected() ? "Male" : "Female";
 
@@ -115,11 +172,11 @@ public class ChildController implements Initializable{
                 usernameTextField.getText(),
                 emailTextField.getText(),
                 phoneTextField.getText(),
-                setPasswordField.getText(),
-                confirmPasswordField.getText(),
+                hashedPassword,
+                hashedPassword, // Assuming you also want to hash the password confirmation
                 firstnameTextField.getText(),
                 lastnameTextField.getText(),
-                dateofbirthDatePicker.getValue(),
+                dateOfBirth,
                 activities,
                 null,  // Assuming filename is not being set here
                 gender,
@@ -129,9 +186,36 @@ public class ChildController implements Initializable{
         );
 
         AppQuery query = new AppQuery();
-        query.addChildren(children);
+
+            query.addChildren(children);
+            registerMessageLabel.setTextFill(Color.web("#0f8a2c"));
+            registerMessageLabel.setText("Registration successful. Welcome!");
+
     }
 
+    private String hashPassword(String password) {
+        try {
+            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+            byte[] hashedBytes = messageDigest.digest(password.getBytes());
+            StringBuilder sb = new StringBuilder();
+            for (byte b : hashedBytes) {
+                sb.append(String.format("%02x", b));
+            }
+            return sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException("Error hashing password", e);
+        }
+    }
+    private boolean isValidEmail(String email) {
+        // Regular expression for email validation
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        Pattern pattern = Pattern.compile(emailRegex);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
+    private boolean isNumeric(String str) {
+        return str.matches("\\d+");
+    }
     private String getSelectedActivities() {
         StringBuilder activities = new StringBuilder();
         if (Act1.isSelected()) activities.append("Outdoor Exploration, ");
