@@ -18,7 +18,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="747.0" prefWidth="946.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.ChildController">
    <children>
       <VBox layoutX="18.0" layoutY="73.0" prefHeight="663.0" prefWidth="246.0">
@@ -84,19 +83,18 @@
           <TableColumn fx:id="colid" prefWidth="36.0" text="ID" />
           <TableColumn fx:id="colfirstname" prefWidth="73.60003662109375" text="First Name" />
             <TableColumn fx:id="collastname" prefWidth="81.60003662109375" text="Last Name" />
-            <TableColumn fx:id="colbirthday" prefWidth="75.99996948242188" text="Date of birth" />
-            <TableColumn fx:id="colactivities" prefWidth="71.199951171875" text="Activities" />
-            <TableColumn fx:id="colgender" prefWidth="66.39996337890625" text="Gender" />
-            <TableColumn fx:id="colusername" prefWidth="76.0" text="username" />
-            <TableColumn fx:id="colphone" prefWidth="82.4000244140625" text="phone" />
-            <TableColumn fx:id="colemail" prefWidth="104.00003662109373" text="email" />
+            <TableColumn fx:id="colactivities" prefWidth="155.20001220703125" text="Activities" />
+            <TableColumn fx:id="colgender" prefWidth="79.20001220703125" text="Gender" />
+            <TableColumn fx:id="colusername" prefWidth="68.79998779296875" text="username" />
+            <TableColumn fx:id="colphone" prefWidth="65.5999755859375" text="phone" />
+            <TableColumn fx:id="colemail" prefWidth="110.4000244140625" text="email" />
         </columns>
       </TableView>
       <ButtonBar layoutX="320.0" layoutY="712.0" prefHeight="28.0" prefWidth="452.0">
         <buttons>
           <Button fx:id="btnSave" mnemonicParsing="false" onAction="#addChildren" style="-fx-background-color: #10439F;" text="Save" textFill="WHITE" />
-            <Button fx:id="btnUpdate" layoutX="135.0" layoutY="17.0" mnemonicParsing="false" style="-fx-background-color: #10439F;" text="Update " textFill="WHITE" />
-            <Button fx:id="btnDelete" layoutX="48.0" layoutY="17.0" mnemonicParsing="false" style="-fx-background-color: #10439F;" text="Delete" textFill="WHITE" />
+            <Button fx:id="btnUpdate" layoutX="135.0" layoutY="17.0" mnemonicParsing="false" onAction="#updateChild" style="-fx-background-color: #10439F;" text="Update " textFill="WHITE" />
+            <Button fx:id="btnDelete" layoutX="48.0" layoutY="17.0" mnemonicParsing="false" onAction="#deleteChild" style="-fx-background-color: #10439F;" text="Delete" textFill="WHITE" />
             <Button fx:id="btnClear" layoutX="116.0" layoutY="17.0" mnemonicParsing="false" style="-fx-background-color: #10439F;" text="Clear" textFill="WHITE" />
         </buttons>
       </ButtonBar>
